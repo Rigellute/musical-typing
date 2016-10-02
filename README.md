@@ -1,7 +1,7 @@
-## Musical Typing
-
-Parse text messages into music notation.
 # [Demo](https://rigellute.github.io/musical-typing/)
+## Musical Typing
+Parse text messages into music notation.
+
 This is a small experiment to create a react wrapper for [Vexflow](https://github.com/0xfe/vexflow/wiki), a musical engraving library.
 ### Goals and uses
 One potential goal of the project is to explore the possibility of using music notation for steganography. One could 'encrypt' text messages and conceal the encryption in music notation.

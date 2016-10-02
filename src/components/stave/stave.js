@@ -101,10 +101,7 @@ Stave.propTypes = {
   clef: PropTypes.string,
   noteLength: PropTypes.number,
   notes: PropTypes.arrayOf(
-    PropTypes.shape({
-      keys: PropTypes.arrayOf(PropTypes.string),
-      duration: PropTypes.string,
-    })
+    PropTypes.obect()
   ),
 };
 
