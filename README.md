@@ -15,3 +15,4 @@ Yet another goal is to use the tool as an aid for composition. One immediate use
 * Address the one bar per stave inefficiency.
 * Create instrument components (currently there is only a stave component)
 * Devise a smarter way of mapping english characters to musical notes (current mapping is extremely naive).
+* Add midi playback of the music.
