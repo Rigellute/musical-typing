@@ -20,15 +20,17 @@ class Stave extends Component {
 
   addRests(notes = []) {
     if (notes.length !== this.props.noteLength) {
-      return Array.from(new Array(this.props.noteLength), (x, i) => i).map((n, i) => {
-        if (notes[i]) {
-          return notes[i];
-        }
+      return Array.from(new Array(this.props.noteLength), (x, i) => i)
+        .map((n, i) => {
+          if (notes[i]) {
+            return notes[i];
+          }
 
-        return {
-          keys: ['b/4'], duration: `${this.props.noteLength}r`,
-        };
-      });
+          // If there are not enough notes, then return a rest.
+          return {
+            keys: ['b/4'], duration: `${this.props.noteLength}r`,
+          };
+        });
     }
 
     return notes;
@@ -36,7 +38,7 @@ class Stave extends Component {
 
   renderStave(notes = this.props.notes) {
     if (!notes.length) {
-      return null;
+      return;
     }
 
     notes = this.addRests(notes);
@@ -71,8 +73,7 @@ class Stave extends Component {
       }
 
       return new VF.StaveNote(noteObj).addAccidental(0, new VF.Accidental(n.accidental));
-    }
-    );
+    });
 
     // Create a voice in 4/4 and add above notes
     const voice = new VF.Voice({ num_beats: 4, beat_value: 4 });
