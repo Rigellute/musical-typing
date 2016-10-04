@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import Vex from 'vexflow';
 
 class Stave extends Component {
@@ -15,33 +15,33 @@ class Stave extends Component {
 
   componentWillReceiveProps(nextProps) {
     this.stave.innerHTML = '';
-    this.renderStave(nextProps.notes);
+    this.renderStave(nextProps);
   }
 
-  addRests(notes = []) {
-    if (notes.length !== this.props.noteLength) {
-      return Array.from(new Array(this.props.noteLength), (x, i) => i)
+  addRests(props = this.props) {
+    if (props.notes.length !== props.noteLength) {
+      return Array.from(new Array(props.noteLength), (x, i) => i)
         .map((n, i) => {
-          if (notes[i]) {
-            return notes[i];
+          if (props.notes[i]) {
+            return props.notes[i];
           }
 
           // If there are not enough notes, then return a rest.
           return {
-            keys: ['b/4'], duration: `${this.props.noteLength}r`,
+            keys: ['b/4'], duration: `${props.noteLength}r`,
           };
         });
     }
 
-    return notes;
+    return props.notes;
   }
 
-  renderStave(notes = this.props.notes) {
-    if (!notes.length) {
+  renderStave(props = this.props) {
+    if (!props.notes.length) {
       return;
     }
 
-    notes = this.addRests(notes);
+    const notes = this.addRests(props);
 
     const VF = Vex.Flow;
 
@@ -58,7 +58,7 @@ class Stave extends Component {
     const stave = new VF.Stave(0, 0, 480);
 
     // Add a clef and time signature.
-    stave.addClef(this.props.clef).addTimeSignature('4/4');
+    stave.addClef(props.clef).addTimeSignature('4/4');
 
     // Connect it to the rendering context and draw!
     stave.setContext(context).draw();
@@ -98,15 +98,15 @@ class Stave extends Component {
   }
 }
 
-Stave.propTypes = {
-  clef: PropTypes.string,
-  noteLength: PropTypes.number,
-  notes: PropTypes.arrayOf(
-    PropTypes.shape({
-      keys: PropTypes.arrayOf(PropTypes.string),
-      duration: PropTypes.string,
-    })
-  ),
-};
+// Stave.propTypes = {
+//   clef: PropTypes.string,
+//   noteLength: PropTypes.number,
+//   notes: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       keys: PropTypes.arrayOf(PropTypes.string),
+//       duration: PropTypes.string,
+//     })
+//   ),
+// };
 
 export default Stave;

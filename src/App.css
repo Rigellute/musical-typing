@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   min-height: 100vh;
 }
 
@@ -13,14 +12,30 @@
   height: 150px;
   padding: 20px;
   color: white;
+  text-align: center;
 }
 
 .App-intro {
   font-size: large;
 }
 
-.enterText {
-  margin-top: 7vh;
+.enter-text {
+  /*margin-top: 7vh;*/
+  margin: auto;
+}
+
+.clef-select {
+  margin: auto;
+}
+
+.notation {
+  margin: auto;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
 @keyframes App-logo-spin {
